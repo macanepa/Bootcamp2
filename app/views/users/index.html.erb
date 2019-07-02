@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
-<table>
+<div class="table-container col-8 mx-auto">
+  <div class="h1 text-center text-primary mx-auto">Users List</div>
+  <table class="table">
   <thead>
     <tr>
       <th>Rut</th>
@@ -12,20 +12,25 @@
     </tr>
   </thead>
 
+
+
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.rut %></td>
         <td><%= user.password %></td>
         <td><%= user.balance %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Show', user_path(user, format:"html") %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+
+
+
 </table>
-
+  <a class="btn btn-primary text-center mx-auto" href="<%= new_user_path(format:"html") %>">New User</a>
+<!--  <div style="float: right;"><%#= link_to 'New User', new_user_path %></div>-->
+</div>
 <br>
-
-<%= link_to 'New User', new_user_path %>
