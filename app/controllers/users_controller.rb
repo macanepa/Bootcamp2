@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    rut = params[:user][:rut]
-    password = params[:user][:password]
+    rut = params[:rut]
+    password = params[:password]
     if User.where(rut: rut, password: password).length>0
       respond_to do |f|
         response={logged:true, balance:User.where(rut: rut).first.balance}
