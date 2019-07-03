@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /users
   # GET /users.json
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @transactions=Transaction.where(user_id: @user.id)
   end
 
   # GET /users/new
@@ -24,8 +26,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    user_params["balance"]=0.0
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

@@ -15,7 +15,7 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.user %></td>
+        <td><%= transaction.user.rut %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.action %></td>
         <td><%= link_to 'Show', transaction %></td>
