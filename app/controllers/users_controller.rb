@@ -23,6 +23,23 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def login
+    rut = params[:user][:rut]
+    password = params[:user][:password]
+    if User.where(rut: rut, password: password).length>0
+      respond_to do |f|
+        response={logged:true, balance:User.where(rut: rut).first.balance}
+        f.json {render json: response, status: :created}
+      end
+    else
+      puts("Ohh No")
+      respond_to do |f|
+        response={logged:false}
+        f.json {render json: response, status: :created}
+      end
+    end
+  end
+
   # POST /users
   # POST /users.json
   def create
