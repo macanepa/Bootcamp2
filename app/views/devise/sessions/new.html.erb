@@ -1,0 +1,32 @@
+
+
+
+<div class="card-container col-5 mx-auto mt-5">
+  <div class="card-dark" style="background-color: transparent; border-radius: 2.2vw;">
+    <div class="card-header" style="background-color: #373c42">
+      <div class="text-center h3 text-warning">Admin Login</div>
+    </div>
+
+    <div class="card-body" style="background-color: #42484e;">
+      <div class="col-8 mx-auto mt-3">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder:"Email" %><br>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password, class:"form-control", autocomplete: "current-password", placeholder:"Password" %><br>
+          </div>
+
+          <div class="actions col-4" style="float: right;">
+            <%= f.submit "Log in", class:"form-control btn-warning" %>
+          </div>
+          <div class="mb-5"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer text-warning">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

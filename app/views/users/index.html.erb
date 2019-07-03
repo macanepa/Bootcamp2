@@ -2,13 +2,13 @@
 
 <div class="table-container col-8 mx-auto">
 
-  <div class="h1 text-center text-primary mx-auto">Users List</div>
-  <table class="table">
+<!--  <div class="h2 text-warning mx-auto">USERS</div>-->
+  <table class="table table-dark table-striped mt-5" style="background-color: #42484e; border-radius: 1vw;">
   <thead>
     <tr>
-      <th>Rut</th>
-      <th>Password</th>
-      <th>Balance</th>
+      <th>RUT</th>
+      <th>PASSWORD</th>
+      <th>BALANCE</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,18 +20,21 @@
       <tr>
         <td><%= user.rut %></td>
         <td><%= user.password %></td>
-        <td><%= user.balance %></td>
-        <td><%= link_to 'Show', user_path(user, format:"html") %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="h5 text-success">$<%= user.balance %></td>
+        <td><a href="<%=user_path(user, format:"html") %>" class="text-warning">Show Details</a></td>
+        <td><a href="<%=edit_user_path(user, format:"html") %>" class="text-warning">Edit User</a></td>
+<!--        <td><a class="text-warning"><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></a></td>-->
       </tr>
     <% end %>
   </tbody>
 
 
 
-</table>
-  <a class="btn btn-primary text-center mx-auto" href="<%= new_user_path(format:"html") %>">New User</a>
-<!--  <div style="float: right;"><%#= link_to 'New User', new_user_path %></div>-->
+
+  </table>
+  <% if not current_admin.nil? %>
+    <a class="btn btn-warning text-center mx-auto" style="float: right;" href="<%= new_user_path(format:"html") %>">Create User</a>
+  <% end %>
+  <!--  <div style="float: right;"><%#= link_to 'New User', new_user_path %></div>-->
 </div>
 <br>

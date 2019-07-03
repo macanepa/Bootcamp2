@@ -1,17 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  Rut:<%= @user.rut %> <br> Password:<%= @user.password %><br>  Balance:<%= @user.balance %>
-</p>
-
 <div class="table-container col-8 mx-auto">
-  <div class="h1 text-center text-primary mx-auto">Transaction List</div>
-  <table class="table">
+
+
+  <table class="table table-dark table-striped mt-5 col-8" style="background-color: #42484e; border-radius: 1vw;">
+    <thead>
+      <th>RUT</th>
+      <th>PASSWORD</th>
+      <th>BALANCE</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=@user.rut %></td>
+        <td><%=@user.password %></td>
+        <td class="h5">$<%=@user.balance %></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-dark table-striped mt-5" style="background-color: #42484e; border-radius: 1vw;">
   <thead>
   <tr>
-    <th>User</th>
-    <th>Amount</th>
-    <th>Action</th>
+    <th>AMOUNT</th>
+    <th>ACTION</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -19,12 +31,21 @@
   <tbody>
   <% @transactions.each do |transaction| %>
     <tr>
-      <td><%= transaction.user.rut %></td>
-      <td><%= transaction.amount %></td>
+      <td
+
+          <% if transaction.amount < 0 %>
+            class="h5 text-danger"
+          <% elsif transaction.amount > 0 %>
+            class="h5 text-success"
+          <% else %>
+            class="h5"
+          <% end %>
+
+      >$ <%= transaction.amount %></td>
       <td><%= transaction.action %></td>
-      <td><%= link_to 'Show', transaction %></td>
-      <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-      <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><a href="<%=transaction_path(transaction, format:"html") %>" class="text-warning">Show Details</a></td>
+      <td><a href="<%=edit_transaction_path(transaction, format:"html") %>" class="text-warning">Edit Transaction</a></td>
+<!--      <td><%#= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
     </tr>
   <% end %>
   <tr>
@@ -32,12 +53,10 @@
     <td><%= @total_transaction_amount %></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
   </tr>
   </tbody>
 </table>
 </div>
 
-<%= link_to 'Edit', edit_user_path(@user, format:"html") %> |
-<%= link_to 'Back', users_path(format:"html") %>
+<!--<%#= link_to 'Edit', edit_user_path(@user, format:"html") %> |-->
+<%#= link_to 'Back', users_path(format:"html") %>
