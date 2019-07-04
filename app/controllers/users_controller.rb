@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       end
     else
       respond_to do |f|
-        f.json {render json: {balance:nil}}
+        f.json {render json: {balance:"nope"}}
       end
     end
   end
