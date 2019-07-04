@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     password = params[:password]
     if User.where(rut: rut, password: password).length>0
       respond_to do |f|
-        response={logged:true, balance:User.where(rut: rut).first.balance}
+        response={logged:true, balance:User.where(rut: rut).first.balance, is_client:User.where(rut: rut).first.is_client}
         f.json {render json: response, status: :created}
       end
     else
@@ -44,8 +44,18 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    user_params["balance"]=0.0
+
     @user = User.new(user_params)
+    if @user.balance.nil?
+      @user.balance=0
+    end
+
+    if @user.is_client.nil?
+      @user.is_client = true
+    end
+
+    # puts("\n\n\n\n\n\n\n\nWAAAAA\n\n\n\n\n\n\n\n")
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
