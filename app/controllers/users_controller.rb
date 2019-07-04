@@ -23,6 +23,21 @@ class UsersController < ApplicationController
   def edit
   end
 
+
+  def get_balance
+    rut = params[:rut]
+    if User.where(rut: rut).length>0
+      respond_to do |f|
+        response={balance:User.where(rut: rut).first.balance}
+        f.json {render json: response, status: :created}
+      end
+    else
+      respond_to do |f|
+        f.json {render json: {balance:nil}}
+      end
+    end
+  end
+
   def login
     rut = params[:rut]
     password = params[:password]
