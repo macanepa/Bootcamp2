@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'home/index'
   devise_for :admins
   resources :admins
-  root to: 'users#index'
+  # root to: 'users#index'
+  root to: 'transactions#index'
 
   # resources :transactions
   defaults format: :json do
