@@ -12,7 +12,7 @@ class Transaction < ApplicationRecord
     puts("Balance:#{balance} Amount:#amount}")
     if amount < 0
       if amount.abs > balance
-        errors.add(:amount, "Ho lee fuk")
+        errors.add(:error, "Usuario no puede gastar más de su saldo")
       end
     end
   end

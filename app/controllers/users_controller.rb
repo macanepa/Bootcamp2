@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @transactions=Transaction.where(user_id: @user.id)
-    @total_transaction_amount = @transactions.sum(:amount).round(2)
   end
 
   # GET /users/new
