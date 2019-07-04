@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   def login
     rut = params[:rut]
     password = params[:password]
+    puts("\n\n\n\n\n\n\n\n#{params}\n\n\n\n\n\n")
     if User.where(rut: rut, password: password).length>0
       respond_to do |f|
         response={logged:true, balance:User.where(rut: rut).first.balance, is_client:User.where(rut: rut).first.is_client}
