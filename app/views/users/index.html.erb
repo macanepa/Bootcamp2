@@ -23,8 +23,8 @@
         <td><%= user.rut %></td>
         <td><%= user.password %></td>
         <td class="h5 text-success">$<%= user.balance %></td>
-        <td><a href="<%=user_path(user, format:"html") %>" class="text-warning">Show Details</a></td>
-        <td><a href="<%=edit_user_path(user, format:"html") %>" class="text-warning">Edit User</a></td>
+        <td><a href="<%=user_path(user, format:"html") %>" class="text-warning"> Show Details</a></td>
+<!--        <td><a href="<%#=edit_user_path(user, format:"html") %>" class="text-warning">Edit User</a></td>-->
 <!--        <td><a class="text-warning"><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></a></td>-->
       </tr>
     <% end %>
