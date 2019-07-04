@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @transactions=Transaction.where(user_id: @user.id)
+    @transactions=Transaction.where(user_id: @user.id).order(created_at: :desc)
   end
 
   # GET /users/new
