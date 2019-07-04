@@ -25,15 +25,35 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
-
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @transaction }
+    if !params[:rut].nil?
+      user = User.where(rut: params[:rut]).first
+      if !user.nil?
+        @transaction = Transaction.new(user_id: user.id, amount: params[:amount], action: "scan QR")
+        respond_to do |format|
+          if @transaction.save
+            format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+            format.json { render :show, status: :created, location: @transaction }
+          else
+            format.html { render :new }
+            format.json { render json: @transaction.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render :new }
+          format.json { render json: {error: "Rut no pertenece a ningún usuario"}, status: :unprocessable_entity }
+        end
+      end
+    else
+      @transaction = Transaction.new(transaction_params)
+      respond_to do |format|
+        if @transaction.save
+          format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+          format.json { render :show, status: :created, location: @transaction }
+        else
+          format.html { render :new }
+          format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
