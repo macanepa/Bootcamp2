@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-u1=User.create!(rut:"156948231", password:"pass123", balance:0)
-u2=User.create!(rut:"159103816", password:"123456789", balance:0)
-u3=User.create!(rut:"157757389", password:"fie0_2id", balance:0)
-u4=User.create!(rut:"170783000", password:"qleo104Da", balance:0)
-u5=User.create!(rut:"175803101", password:"woucle3_32", balance:0)
+u1=User.create!(rut:"156948231", password:"pass123", balance:0, is_client:true)
+u2=User.create!(rut:"159103816", password:"123456789", balance:0, is_client:true)
+u3=User.create!(rut:"157757389", password:"fie0_2id", balance:0, is_client:true)
+u4=User.create!(rut:"170783000", password:"qleo104Da", balance:0, is_client:true)
+u5=User.create!(rut:"175803101", password:"woucle3_32", balance:0, is_client:true)
+u6=User.create!(rut:"149365012", password:"woucle3_32", balance:0, is_client:false)
 
 c = 0
 while c<10 do

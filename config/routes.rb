@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   post 'users/login', to: "users#login", defaults: { format: :json }
+  post 'users/get_balance', to: "users#get_balance", defaults: { format: :json }
+
+
   get 'home/index'
   devise_for :admins
   resources :admins
