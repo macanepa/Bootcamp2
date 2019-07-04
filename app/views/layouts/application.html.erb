@@ -25,8 +25,11 @@
   <body>
 
       <nav class="navbar navbar-dark bg-dark" style="box-shadow: 0px 5px rgb(0,0,0,0.5);">
+        <div class="form-inline">
         <a class="navbar-brand text-warning" href="<%=root_path %>">BOOTCAMP</a>
-
+        <a style="text-decoration: none;" class="medium ml-5 mr-4 nav-item text-warning" href="<%=users_path(format:"html") %>">USERS</a>
+        <a style="text-decoration: none;" class="medium mr-4 nav-item text-warning" href="<%=transactions_path(format:"html") %>">TRANSACTIONS</a>
+        </div>
         <p class="navbar-text">
           <% if admin_signed_in? %>
             Logged in as <strong><%= current_admin.email %></strong>.
